@@ -1,0 +1,368 @@
+translator
+translators
+translation
+hospital
+clinic
+cosmetic surgeon
+medical centre
+doctor
+takeaway
+restaurants
+pubs
+cafes
+supermarkets
+convenience stores
+shopping centres
+builder
+church
+public phone
+public telephone
+university
+library
+libraries
+bottle shop
+barber
+hairdresser
+salon
+car hire
+car dealer
+mechanic
+auto electrician
+motorcycle dealer
+tyres
+wheels
+tax
+accountant
+tax advisor
+tax accountant
+tax attorney
+bank
+vet
+vet clinic
+vets
+electrician
+locksmith
+plumber
+lawyer
+dentist
+bricklayer
+tiler
+carpenter
+painter
+mover
+movers
+alarm
+security
+home security
+air conditioning
+air conditioner
+ac repair
+ac
+hvac
+hardware
+hardware store
+electronics
+camping
+pregnancy
+counselling
+psychiatrist
+psychologist
+epilepsy
+abrasive blasting
+adhesives
+adult shop
+adult shops
+adult store
+adult stores
+advertising
+signwriter
+signwriters
+signs
+architects
+art
+art store
+art gallery
+art galleries
+art schools
+art shop
+av equipment
+auto parts
+car parts
+car electrician
+awnings
+binoculars
+bicycle
+bicycles
+boat hire
+boats
+boat ramps
+barrister
+barristers
+bookstore
+book store
+bookstores
+book stores
+bearings
+batteries
+hotel
+hotels
+motel
+motels
+b&b
+b&bs
+blinds
+computers
+computer store
+computer stores
+cables
+car alarms
+printers
+printer ink
+ink
+catering
+cement
+engineers
+civil engineer
+civil engineers
+clocks
+clothes
+clothing
+clothing store
+fabric
+fabric store
+fabric shop
+conveyancing
+credit cards
+credit
+curtains
+emergency
+dental emergency
+pet
+pet store
+lighting
+lighting store
+lighting shop
+switchboards
+switches
+electroplating
+manufacturing
+finance
+firewood
+fitness
+gym
+gyms
+fitness equipment
+gym equipment
+treadmill
+treadmills
+flooring
+fans
+florist
+grocer
+greengrocer
+grocers
+furniture
+furniture store
+furnishings
+garage doors
+garage door repair
+gas
+gas burner
+gas burners
+golf
+golf club
+gutter
+gutter cleaning
+handyman
+gun
+guns
+guns and ammunition
+ammunition
+instruments
+scientific instruments
+instrumentation
+insulator
+insulation
+home repairs
+real estate
+apartments
+units
+houses
+renting
+rent
+domain
+internet
+isp
+isps
+lpg
+natural gas
+lab equipment
+lab supplies
+laboratory supplies
+laboratory equipment
+pest control
+insect
+insect control
+interpreter
+interpreters
+internet cafe
+internet cafes
+free wifi
+wifi
+lawn mower
+lawn mowers
+locks
+mechanical engineers
+metal workers
+metal
+motor homes
+caravans
+medical supplies
+pharmacy
+pharmacist
+pharmacies
+chemist
+chemists
+music
+music store
+nursery
+nurseries
+office furniture
+office supplies
+stationery
+stationary
+office equipment
+shelving
+shelves
+optometrists
+optician
+optometrist
+opticians
+panel beater
+panel beaters
+psychotherapists
+publishers
+radio
+radios
+radio equipment
+roofing
+roofer
+roofers
+rubbish
+skip
+skips
+skip hire
+bin hire
+bins
+rugs
+carpet
+carpets
+sand
+soil
+scales
+weighing
+weighing equipment
+shooting
+shooting club
+shooting clubs
+septic tanks
+septic
+septic system
+septic systems
+security services
+security consultants
+sewing
+sewing machines
+shock absorbers
+suspension
+sign writer
+sign writers
+signwriter
+signwriters
+solicitor
+solicitors
+sportswear
+sporting
+sports equipment
+sporting supplies
+sporting goods
+post office
+post offices
+postal services
+postal service
+superannuation
+super
+surgical supplies
+surgical equipment
+surgery
+surgeon
+surgeons
+swimwear
+tailor
+tailors
+seamstress
+tarpaulin
+tarpaulins
+tarp
+tarps
+food
+takeaway food
+tax returns
+tax return
+taxi
+taxis
+taxi service
+uber
+lyft
+phones
+telephones
+phone
+telephone
+tv
+television
+tvs
+whitegoods
+good guys
+uniforms
+uniform supplier
+trailer
+trailers
+ute rental
+car rental
+ute hire
+truck hire
+trucks
+truck rental
+rent truck
+rent car
+hire car
+hire truck
+hire trailer
+trailer hire
+trailers
+flights
+airport
+watches
+jeweller
+jewelry
+jewelry store
+timber
+welding
+welders
+welder
+welding equipment
+welding supplies
+wigs
+wig
+wig store
+wig shop
+windscreens
+glass
+glass repair
+windscreen repairs
+glasser
+yacht clubs
+hostel
+hostels
+youth hostels
+youth hostel

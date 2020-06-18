@@ -1,0 +1,44 @@
+{
+  "manifest_version": 2,
+  "name": "Figment",
+  "version": "1.0",
+  "description": "An addon",
+  "homepage_url": "https://figmentext.org",
+  "icons": {
+    "48": "icons/icon48.png",
+    "96": "icons/icon96.png"
+  },
+  "browser_action": {
+    "default_icon": "icons/icon32disabled.png",
+    "default_title": "Figment",
+    "default_popup": "popup/popupmenu.html",
+    "browser_style": true
+  },
+  "background": {
+    "scripts": [
+      "js/global.js",
+      "js/background_script.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "include/jquery-3.3.1.min.js",
+        "js/global.js",
+        "js/content_scripts/main.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "permissions": [
+    "<all_urls>",
+    "tabs",
+    "activeTab",
+    "search",
+    "webNavigation",
+    "webRequest"
+  ]
+}
