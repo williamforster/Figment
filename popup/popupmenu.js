@@ -7,6 +7,10 @@ document.getElementById('button-start').addEventListener('click', (e) => {
   console.log('sending msg')
   browser.runtime.sendMessage({ text: 'start_figment' })
 })
+document.getElementById('button-stop').addEventListener('click', (e) => {
+  console.log('sending stop msg')
+  browser.runtime.sendMessage({ text: 'stop_figment' })
+})
 
 /**
  * Open a new tab and search

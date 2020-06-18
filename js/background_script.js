@@ -1,5 +1,9 @@
 /* global browser */
+const MAX_TIME_BETWEEN_SEARCHES = 35000
+const MIN_TIME_BETWEEN_SEARCHES = 12000
 
+var figment_running = false
+var figment_window = null
 var openTabs = [] // A list of open tabs by id
 var dataSuburbs = ["Paddington", 'Ashgrove', 'Bardon', 'Rosalie']
 var dataLocalServices = [] // Array of strings of local services a user might web search for
@@ -7,11 +11,21 @@ var dataLocalServices = [] // Array of strings of local services a user might we
 // main loop
 function mainLoop() {
   console.log('start main loop')
+  // close all the open tabs
+  for (var tab of openTabs) {
+    browser.tabs.remove(tab)
+  }
+  openTabs = []
+  if (!figment_running) { return }
   // do a new session (forage, reddit, local service/product)
-  startLocalQuery()
+  //startLocalQuery()
+  forage()
   // decide how long to wait to start the next one
+  var waitTime = Math.random() * 
+      (MAX_TIME_BETWEEN_SEARCHES - MIN_TIME_BETWEEN_SEARCHES) +
+      MIN_TIME_BETWEEN_SEARCHES
   // wait
-  setTimeout(mainLoop, 100000000)
+  setTimeout(mainLoop, waitTime)
 }
 
 /**
@@ -29,6 +43,34 @@ function getQueries() {
   xmlhttp.send("services");
 }
 
+
+/**
+ * Simulate a forage search with random english words, searching 
+ * a query and then opening a few links in new tabs
+ */
+async function forage() {
+  console.log('Starting forage')
+  var queryString = randomFrom(ENGLISH_WORDS)
+  while(true) {
+    if (Math.random() < 0.5) { break }
+    queryString += ' ' + randomFrom(ENGLISH_WORDS)
+  }
+  // perform search and wait for content script to send links back
+  browser.search.get().then((function (engines) {
+    var closureQueryString = queryString
+    return function (engines) {
+      engines.forEach(function (engine) {
+        if (engine['isDefault'] === true) {
+          searchInNewTab(engine['name'], closureQueryString)
+        }
+      })
+    }
+  })())
+}
+
+/**
+ * Simulate the user searching for services in their local area
+ */
 async function startLocalQuery() {
   console.log('started local query')
   // decide on a random thing to search for
@@ -60,13 +102,16 @@ async function startLocalQuery() {
  */
 function searchInNewTab(engineName, queryString) {
   // open a new tab
-  var created = browser.tabs.create({})
+  var created = browser.tabs.create({
+    active: false,
+    windowId: figment_window
+  })
   created.then((function () {
     var closureEngineName = engineName
     var closureQueryString = queryString
     return function (newtab) {
       var newTabId = newtab['id']
-      openTabs.push(newtab)
+      openTabs.push(newTabId)
       // wait a bit
       var waitTime = defaultRandom(WAIT_TAB_CREATED, MIN_DELAY)
       setTimeout(function () {
@@ -113,7 +158,7 @@ function openTabsAtUrl(urls) {
     var closureUrls = urls
     return function (newtab) {
       var newTabId = newtab['id']
-      openTabs.push(newtab)
+      openTabs.push(newTabId)
       // wait a bit
       var waitTime = defaultRandom(WAIT_TAB_CREATED, MIN_DELAY)
       setTimeout(() => {
@@ -140,7 +185,18 @@ async function viewOpenTabs() {
  */
 function receivedMessage(message, sender, response) {
   if (message['text'] === 'start_figment') {
-    mainLoop()
+    figment_running = true
+    browser.windows.getCurrent().then( function (currentWindow) {
+      figment_window = currentWindow['id']
+      console.log('Running figment in window ' + figment_window)
+      mainLoop()
+    })
+  } else if (message['text'] === 'stop_figment') {
+    figment_running = false
+    for (var tab of openTabs) {
+      browser.tabs.remove(tab)
+    }
+    openTabs = []
   } else if (message['text'] === 'tab_ready') {
     console.log('Tab ready, id:' + sender.id)
   } else if (message['text'] === 'open_tabs') {
