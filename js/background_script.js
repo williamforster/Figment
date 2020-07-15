@@ -3,19 +3,14 @@ const MAX_TIME_BETWEEN_SEARCHES = 35000
 const MIN_TIME_BETWEEN_SEARCHES = 12000
 
 var figment_running = false
-var figment_window = null
+var figment_window = null // The id of the figment window
 var openTabs = [] // A list of open tabs by id
-var dataSuburbs = ["Paddington", 'Ashgrove', 'Bardon', 'Rosalie']
-var dataLocalServices = [] // Array of strings of local services a user might web search for
 
 // main loop
 function mainLoop() {
   console.log('start main loop')
   // close all the open tabs
-  for (var tab of openTabs) {
-    browser.tabs.remove(tab)
-  }
-  openTabs = []
+  closeFigmentTabs()
   if (!figment_running) { return }
   // do a new session (forage, reddit, local service/product)
   //startLocalQuery()
@@ -26,6 +21,26 @@ function mainLoop() {
       MIN_TIME_BETWEEN_SEARCHES
   // wait
   setTimeout(mainLoop, waitTime)
+}
+
+/**
+ * Close all the tabs figment has opened. This may be more difficult than
+ * it first appears, as sometimes links open their own new tab, so we have
+ * to check all tabs and see what their origin is
+ */
+function closeFigmentTabs() {
+  const promise = browser.tabs.query({windowId: figment_window})
+  promise.then((function(theTabs) {
+    for(var tab of theTabs) {
+      if (openTabs.includes(tab.openerTabId)) {
+        browser.tabs.remove(tab.id)
+      }
+    }
+  }))
+  promise.finally((function() {
+    browser.tabs.remove(openTabs)
+    openTabs = []
+  }))
 }
 
 /**
@@ -153,7 +168,10 @@ function openTabsAtUrl(urls) {
     return
   }
 
-  var created = browser.tabs.create({active: false})
+  var created = browser.tabs.create({
+    active: false,
+    windowId: figment_window
+  })
   created.then((function () {
     var closureUrls = urls
     return function (newtab) {

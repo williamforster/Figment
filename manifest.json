@@ -5,11 +5,12 @@
   "description": "An addon",
   "homepage_url": "https://figmentext.org",
   "icons": {
+    "32": "icons/icon32.png",
     "48": "icons/icon48.png",
     "96": "icons/icon96.png"
   },
   "browser_action": {
-    "default_icon": "icons/icon32disabled.png",
+    "default_icon": "icons/icon32.png",
     "default_title": "Figment",
     "default_popup": "popup/popupmenu.html",
     "browser_style": true
