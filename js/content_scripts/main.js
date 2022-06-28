@@ -42,7 +42,7 @@ function openSearchLinks(engine) {
       links = $('h2 a')
       break
     case "google":
-      links = $('div.rc a')
+      links = $('div.g a')
       break
     default:
       links = []

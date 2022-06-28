@@ -124,6 +124,7 @@ function searchInNewTab(engineName, queryString) {
   created.then((function () {
     var closureEngineName = engineName
     var closureQueryString = queryString
+
     return function (newtab) {
       var newTabId = newtab['id']
       openTabs.push(newTabId)
@@ -132,11 +133,22 @@ function searchInNewTab(engineName, queryString) {
       setTimeout(function () {
         // search in the new tab
         console.log('searching in tab ' + newTabId)
-        browser.search.search({
+        // focuses window when used
+        /*browser.search.search({
           query: closureQueryString,
           engine: closureEngineName,
           tabId: newTabId
-        })
+        })*/
+
+        if (closureEngineName != "Google") {
+          console.log("Attempted to search " + closureEngineName + ". Figment can only search google at the moment")
+        }
+
+        browser.tabs.update(newTabId, {
+          active: false,
+          url: "https://google.com/search?q=" + closureQueryString
+        }).then()
+
         // allow some time for content script to load and send message
         var waitLoad = defaultRandom(WAIT_PAGE_LOAD, MIN_PAGE_LOAD_DELAY)
         setTimeout(function() {
