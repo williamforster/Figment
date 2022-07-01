@@ -41,6 +41,7 @@
     "activeTab",
     "search",
     "webNavigation",
-    "webRequest"
+    "webRequest",
+    "webRequestBlocking"
   ]
 }

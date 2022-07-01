@@ -24,6 +24,41 @@ function mainLoop() {
 }
 
 /**
+ * Prevent figment from downloading files
+ */
+browser.webRequest.onHeadersReceived.addListener(
+    (function (details) {
+        //console.log("HEADERS RECEIVED FOR " + details.url)
+        //console.log(details.responseHeaders)
+        for (var headerItem of details.responseHeaders) {
+            if (headerItem.name.toLowerCase() == "content-disposition") {
+                //console.log("found content disposition header")
+                if (headerItem.value.toLowerCase().includes("attachment") ||
+                        headerItem.value.toLowerCase().includes("filename")) {
+                    headerItem.value = "inline"
+                    console.log("Prevented download of " + details.url)
+                }
+            }
+            if (headerItem.name.toLowerCase() == "content-type") {
+                //console.log("found content type header")
+                if (headerItem.value.toLowerCase().includes("application") ||
+                        headerItem.value.toLowerCase().includes("text/x-c")) {
+                    headerItem.value = "text/plain"
+                    console.log("Prevented download of content-type application - " + details.url)
+                }
+            }
+        }
+
+        return details
+    }),
+    {
+        urls: ["<all_urls>"],
+        windowId: figment_window // Only prevent downloads from the figment window
+    },
+    ["blocking", "responseHeaders"] // Blocking execution, get the response headers in details var
+)
+
+/**
  * Close all the tabs figment has opened. This may be more difficult than
  * it first appears, as sometimes links open their own new tab, so we have
  * to check all tabs and see what their origin is
