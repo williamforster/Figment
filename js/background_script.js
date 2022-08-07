@@ -41,7 +41,7 @@ browser.webRequest.onHeadersReceived.addListener(
             }
             if (headerItem.name.toLowerCase() == "content-type") {
                 //console.log("found content type header")
-                if (headerItem.value.toLowerCase().includes("application") ||
+                if (//headerItem.value.toLowerCase().includes("application") ||
                         headerItem.value.toLowerCase().includes("text/x-c")) {
                     headerItem.value = "text/plain"
                     console.log("Prevented download of content-type application - " + details.url)
@@ -49,6 +49,7 @@ browser.webRequest.onHeadersReceived.addListener(
             }
         }
 
+        // Return the altered http response
         return details
     }),
     {
@@ -95,15 +96,15 @@ function getQueries() {
 
 
 /**
- * Simulate a forage search with random english words, searching 
+ * Simulate a forage search with random words from wikipedia article titles, searching 
  * a query and then opening a few links in new tabs
  */
 async function forage() {
   console.log('Starting forage')
-  var queryString = randomFrom(ENGLISH_WORDS)
+  var queryString = randomFrom(WIKIPEDIA_TOKENS)
   while(true) {
     if (Math.random() < 0.5) { break }
-    queryString += ' ' + randomFrom(ENGLISH_WORDS)
+    queryString += ' ' + randomFrom(WIKIPEDIA_TOKENS)
   }
   // perform search and wait for content script to send links back
   browser.search.get().then((function (engines) {

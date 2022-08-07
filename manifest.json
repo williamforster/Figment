@@ -19,7 +19,8 @@
     "scripts": [
       "js/global.js",
       "js/background_script.js",
-      "js/english_words.js"
+      "js/english_words.js",
+      "js/wikipedia_tokens.js"
     ]
   },
   "content_scripts": [
